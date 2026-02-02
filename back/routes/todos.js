@@ -1,8 +1,8 @@
 import { Router } from "express";
-const todosRouter = Router();
+const todosRoutes = Router();
 
-todosRouter.get("/", (req, res) => {
+todosRoutes.get("/", (req, res) => {
   res.json({ message: "todos route works" });
 });
 
-export default todosRouter;
+export default todosRoutes;
