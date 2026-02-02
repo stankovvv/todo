@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
-import { todosRouter } from "./routes/todos";
-
+import MONGODB_URI from "dotenv"
+import { todosRoutes } from "./routes/todos.js";
 
 const app = express();
 app.use(express.json());
@@ -25,7 +25,7 @@ mongoose
   res.json({ status: "ok" });
 });
 
-app.use("/api/todos", todosRouter);
+app.use("/api/todos", todosRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
