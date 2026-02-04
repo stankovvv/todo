@@ -24,7 +24,7 @@ mongoose
   app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
-
+const todosRoutes = require("./routes/todos.js");
 app.use("/api/todos", todosRoutes);
 
 app.listen(process.env.PORT, () => {
