@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import MONGODB_URI from "dotenv"
-import { todosRoutes } from "./routes/todos.js";
+import { todosRoutes } from "../routes/todos.js";
 
 const app = express();
 app.use(express.json());
@@ -24,7 +24,7 @@ mongoose
   app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
-const todosRoutes = require("./routes/todos.js");
+const todosRoutes = require("../routes/todos.js");
 app.use("/api/todos", todosRoutes);
 
 app.listen(process.env.PORT, () => {
