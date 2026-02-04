@@ -7,6 +7,7 @@ const API_URL = "http://localhost:3000/api/ToDos";
 
 export default function App() {
   const [ToDos, setToDo] = useState([]);
+  const [newTask, setnewTask] = useState("");
 
   const fetchToDo = async () => {
   try {
@@ -22,8 +23,10 @@ export default function App() {
     fetchToDo();
   }, []);
 
-  const AddToDo = () => {
-    console.log("Add clicked");
+  const AddToDo = async () => {
+    const res = await axios.post(API_URL, {text: newTask});
+    setToDo((prev) => [...prev, res.data]);
+    setnewTask("");
   };
 
 
@@ -34,7 +37,12 @@ export default function App() {
           <h1>ToDo.com</h1>
         </div>
         <div class='add_button'>
-          <button class='add_button' onClick={AddToDo}>Add</button>
+          <button class='add_button' onClick={AddToDo}>Add task</button>
+          <input 
+          value={newTask}
+          onChange={(e) => setnewTask(e.target.value)}
+          placeholder="New task"
+          />
         </div>
         <div class='container'>
           <div class='un done boxlist'>
@@ -49,7 +57,8 @@ export default function App() {
                 {ToDos.map((T) => (
                   <li key={T.id}>{T.text}{" "}
                   <button>Edit</button>{" "}
-                  <button>Delete</button></li>
+                  <button>Delete</button>
+                  </li>
                 ))}
               </ul>
             </div>
